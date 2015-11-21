@@ -15,6 +15,16 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$light: #fff;
+$stable: #730A13;
+$positive: #F22613;
+$calm: #BFAB99;
+$balanced: #33cd5f;
+$energized: #ffc900;
+$assertive: #ef473a;
+$royal: #886aea;
+$dark: #444;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
@@ -28,3 +38,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	width: 100%;
 	height: auto;
 }
+
+.img-logo
+{
+	padding: 15% 20% 10% 20%;
+}
+
+.bar.bar-stable .title, .bar-stable .button.button-clear
+{
+	color: #fff !important;
+}
+
+.text-middle
+{
+	text-align: center;
+}
+
+

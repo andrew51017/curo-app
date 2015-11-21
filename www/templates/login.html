@@ -1,17 +1,11 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
+<ion-view view-title="Login">
   <ion-content>
-    <img src="img/curo.png" class="img-responsive" />
+    <img src="img/curo.png" class="img-responsive img-logo" />
     <form ng-submit="doLogin()">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
+          <span class="input-label">Email address</span>
+          <input type="text" ng-model="loginData.email">
         </label>
         <label class="item item-input">
           <span class="input-label">Password</span>
@@ -20,7 +14,12 @@
         <label class="item">
           <button class="button button-block button-positive" type="submit">Log in</button>
         </label>
+        <label class="item text-middle">
+          <p><b>Don't have an account?</b></p>
+          <button class="button button-block button-calm" type="button" ng-click="navigateToRegistration()">Register now</button>
+        </label>
       </div>
     </form>
   </ion-content>
-</ion-modal-view>
+</ion-view>
+

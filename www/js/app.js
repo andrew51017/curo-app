@@ -25,11 +25,16 @@ angular.module('curoapp', ['ionic', 'curoapp.controllers', 'lbServices'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
+  })
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
   })
   .state('app.playlists', {
     url: '/playlists',
@@ -42,5 +47,5 @@ angular.module('curoapp', ['ionic', 'curoapp.controllers', 'lbServices'])
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/login');
 });

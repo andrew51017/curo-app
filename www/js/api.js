@@ -1,6 +1,6 @@
 (function(window, angular, undefined) {'use strict';
 
-var urlBase = "curo-api.herokuapp.com";
+var urlBase = "http://curo-api.herokuapp.com/api";
 var authHeader = 'authorization';
 
 /**

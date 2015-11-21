@@ -1,44 +1,71 @@
 angular.module('curoapp.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $rootScope) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+})
 
-  // Form data for the login modal
+.controller('LoginCtrl', function($scope, $rootScope, $location, $ionicModal, $ionicPopup, ApplicationUser) {
+
+  // Form data for the registration modal
+  $scope.registerData = {};
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
+  $ionicModal.fromTemplateUrl('templates/register.html', {
     scope: $scope
   }).then(function(modal) {
-    $scope.modal = modal;
+    $scope.registerModal = modal;
   });
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
+  // Triggered in the register modal to close it
+  $scope.closeRegistration = function() {
+    $scope.registerModal.hide();
   };
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
+  // Open the registration modal
+  $scope.registration = function() {
+    $scope.registerModal.show();
   };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+  $scope.doRegister = function() {
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
+      var data = $scope.registerData;
+      ApplicationUser.create(data, function() {
+          $scope.showAlert("Registered successfully!", "Your account has been successfully registered.");
+      }, function(res) {
+          $scope.showAlert("Registration failed!", "Your account couldn't be registered.");
+      });
+  }; 
+
+    // Perform the login action when the user submits the login form
+    $scope.doLogin = function() {
+
+        var data = $scope.loginData;
+        ApplicationUser.login(data, function(res) {
+
+            $rootScope.loggedInUser = data.email;
+
+            $location.path("/app/playlists");
+        }, function(res) {
+            
+        });
+
+    };
+
+    $scope.navigateToRegistration = function() {
+      $scope.registration();
+    }; 
+
+   // An alert dialog
+   $scope.showAlert = function(title, message) {
+     var alertPopup = $ionicPopup.alert({
+       title: title,
+       template: message
+     });
+     alertPopup.then(function(res) {
+     });
+   };
+
 })
 
 .controller('PlaylistsCtrl', function($scope) {
@@ -50,7 +77,4 @@ angular.module('curoapp.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
 });
