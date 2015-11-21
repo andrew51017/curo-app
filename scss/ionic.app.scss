@@ -20,3 +20,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+//Overrides and extras 
+
+.img-responsive
+{
+	width: 100%;
+	height: auto;
+}
