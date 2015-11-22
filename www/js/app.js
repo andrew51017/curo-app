@@ -42,6 +42,14 @@ angular.module('curoapp', ['ionic', 'curoapp.controllers', 'lbServices'])
         templateUrl: 'templates/tab-dash.html',
       }
     }
+  })
+  .state('tab.searchres', {
+    url: '/searchres',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/tab-searchres.html',
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
