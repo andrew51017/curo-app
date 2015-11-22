@@ -45,6 +45,9 @@ angular.module('curoapp.controllers', [])
 
             $rootScope.loggedInUser = data.email;
 
+            var userID = res.user_id;
+            localStorage.setItem('userID');
+
             $location.path("/tab/dash");
         }, function(res) {
             
@@ -88,7 +91,11 @@ angular.module('curoapp.controllers', [])
 
   $scope.bookings = [];
 
-  var res = Bookings.find();
+  var ruserID = localStorage.getItem('userID');
+
+  var res = Bookings.find({
+        filter: { where : { user_id: ruserID } }
+      }); 
 
   res.$promise.then(function(b) {
     b.forEach(function(booking) {
@@ -106,3 +113,4 @@ angular.module('curoapp.controllers', [])
 
 
 }); 
+
