@@ -47,6 +47,7 @@ angular.module('curoapp', ['ionic', 'curoapp.controllers', 'lbServices'])
     url: '/bookings',
     views: {
       'tab-bookings': {
+        controller: 'BookingController',
         templateUrl: 'templates/tab-bookings.html',
       }
     }

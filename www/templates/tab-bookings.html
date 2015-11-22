@@ -1,5 +1,28 @@
 <ion-view view-title="Dashboard">
-  <ion-content class="padding">
-  	Liam
+  <ion-content>
+
+      <div class="list">
+
+	  <div class="item item-divider">
+	    Your bookings
+	  </div>
+
+		<div class="item" ng-hide="bookings.length">
+			No bookings were found.
+			<button class="button button-block button-positive">
+			  Search for restaurants
+			</button>
+		</div>
+
+        <a ng-repeat="booking in bookings" 
+           href="#/{{booking.date}}"
+           class="item">
+           <h3><span class="icon ion-ios-calendar-outline"></span> {{ booking.date }} </h3>
+           <h3><span class="icon ion-ios-location"></span> {{ booking.name }} </h3>
+           <h3><span class="icon ion-ios-people"></span> {{ booking.size }}</h3>
+        </a>
+
+      </div>
+
   </ion-content>
 </ion-view>
