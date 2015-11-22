@@ -43,6 +43,14 @@ angular.module('curoapp', ['ionic', 'curoapp.controllers', 'lbServices'])
       }
     }
   })
+  .state('tab.bookings', {
+    url: '/bookings',
+    views: {
+      'tab-bookings': {
+        templateUrl: 'templates/tab-bookings.html',
+      }
+    }
+  })
   .state('tab.searchres', {
     url: '/searchres/:query',
     views: {

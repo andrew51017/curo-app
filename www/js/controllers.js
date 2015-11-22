@@ -70,9 +70,16 @@ angular.module('curoapp.controllers', [])
 
 .controller('SearchController', function($scope, $stateParams, Restaurant) {
 
+  $scope.restaurants = null;
+
   var searchQuery = $stateParams.query; 
-  $scope.restaurants = Restaurant.find({
-    filter: { where: { name: {like: '.*' + searchQuery + '.*'} } }
+
+  var res = Restaurant.find({
+    filter: { where: { name: { like: '%' + searchQuery + '%' } } }
+  });
+
+  res.$promise.then(function(r) {
+    $scope.restaurants = r;
   });
 
 

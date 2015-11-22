@@ -1,9 +1,15 @@
 <ion-view view-title="Dashboard">
-  <ion-content class="padding">
-
-  	<ion-content>
+  <ion-content>
 
       <div class="list">
+
+	  <div class="item item-divider">
+	    Search results
+	  </div>
+
+		<div class="item" ng-hide="restaurants.length">
+			No results were found.
+		</div>
 
         <a ng-repeat="restaurant in restaurants" 
            href="#/{{restaurant.name}}"
