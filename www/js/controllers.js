@@ -46,7 +46,7 @@ angular.module('curoapp.controllers', [])
             $rootScope.loggedInUser = data.email;
 
             var userID = res.user_id;
-            localStorage.setItem('userID');
+            localStorage.setItem('userID', userID);
 
             $location.path("/tab/dash");
         }, function(res) {
