@@ -45,7 +45,7 @@ angular.module('curoapp.controllers', [])
 
             $rootScope.loggedInUser = data.email;
 
-            $location.path("/app/playlists");
+            $location.path("/tab/dash");
         }, function(res) {
             
         });
@@ -66,15 +66,4 @@ angular.module('curoapp.controllers', [])
      });
    };
 
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
 });
