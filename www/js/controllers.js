@@ -45,7 +45,7 @@ angular.module('curoapp.controllers', [])
 
             $rootScope.loggedInUser = data.email;
 
-            var userID = res.user_id;
+            var userID = res.userId;
             localStorage.setItem('userID', userID);
 
             $location.path("/tab/dash");
@@ -94,7 +94,7 @@ angular.module('curoapp.controllers', [])
   var ruserID = localStorage.getItem('userID');
 
   var res = Bookings.find({
-        filter: { where : { user_id: ruserID } }
+        filter: { where : { userId: ruserID } }
       }); 
 
   res.$promise.then(function(b) {
@@ -114,7 +114,7 @@ angular.module('curoapp.controllers', [])
 
 })
 
-.controller('RestaurantInfoController', function($scope, $stateParams, Restaurant, Review, Menu) {
+.controller('RestaurantInfoController', function($scope, $stateParams, $ionicPopup, Restaurant, Review, Menu, Bookings) {
 
   Array.prototype.groupBy = function(hash){
     var _hash = hash ? hash : function(o){return o;};
@@ -184,7 +184,26 @@ angular.module('curoapp.controllers', [])
       }
 
       return totalCost;
-  }; 
+  };
+
+  $scope.submitBooking = function()
+  {
+    var partySize = $scope.partySize == null ? 1 : $scope.partySize;
+    var theDate = $scope.date == null ? new Date().toLocaleString() : $scope.date;
+    var uid = localStorage.getItem('userID') == undefined ? 1 : Number(localStorage.getItem('userID')); 
+    Bookings.create({ size: partySize, userId: uid, restaurant_id: restaurantId, date: theDate })
+    .$promise.then(function(nb) {
+
+       var alertPopup = $ionicPopup.alert({
+         title: "Booking successful!",
+         template: "Thank you for your booking! Your booking has been successful!"
+       });
+       alertPopup.then(function(res) {
+       });
+
+    });
+
+  } 
 
 }); 
 
