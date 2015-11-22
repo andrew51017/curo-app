@@ -1,0 +1,85 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+
+	<div class="list card">
+
+	  <div class="item item-avatar">
+	    <img src="http://www.clker.com/cliparts/F/B/O/x/u/B/knife-and-fork-orange-md.png">
+	    <h2>{{ restaurant.name }}</h2>
+	    <p>{{ restaurant.address }}</p>
+	    <p>T: {{ restaurant.phone_number }}</p>
+	  </div>
+	</div>
+
+	<div class="button-bar">
+	  <a ng-click="currentSlide = 0" class="button button-small button-assertive">Info</a>
+	  <a ng-click="currentSlide = 1" class="button button-small button-assertive">Reviews</a>
+	  <a ng-click="currentSlide = 2" class="button button-small button-assertive">Menu</a>
+	</div>
+
+	<ion-slide-box does-continue="false" show-pager="false" active-slide="currentSlide">
+	  <ion-slide>
+	    <div class="box">
+			<div class="list card">
+			  <div class="item item-body">
+			    <img class="full-image" ng-src="{{ restaurant.image }}">
+			    <p>
+			      This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+			      the content is from a card-body consisting of an image and paragraph text. The footer
+			      consists of tabs, icons aligned left, within the card-footer.
+			    </p>
+			    <p>
+			      <a href="#" class="subdued">1 Like</a>
+			      <a href="#" class="subdued">5 Comments</a>
+			    </p>
+			  </div>
+
+			</div>
+	    </div>
+	  </ion-slide>
+	  <ion-slide>
+	    <div class="box">
+	    <div class="box">
+			<div class="list list-inset">
+			    <div ng-repeat="review in reviews" class="item item-avatar" href="#">
+			      <img src="http://iitm-amalgam.org/img/team/person-icon.png">
+			      <h2>Name</h2>
+			      <p>{{review.comment}}</p>
+			      <p>
+			      	<span class="icon ion-ios-star" ng-repeat="i in getNumber(review.rating) track by $index"></span>
+			      	<span class="icon ion-ios-star-outline" ng-repeat="i in getNumber(5-review.rating) track by $index"></span>
+			      </p>
+			    </div>
+			</div>
+	    </div>
+	    </div>
+	  </ion-slide>
+	  <ion-slide>
+	    <div class="box">
+	    	<div class="list list-inset">
+	    		<div ng-repeat="menuGroup in menuItems">
+				  <div class="item item-divider">
+				    {{menuGroup.key.type}}
+				  </div>
+				  <div ng-repeat="item in menuGroup.group" ng-init="item.orderCount = 0" class="item item-button-right item-multi-button-right">
+					{{item.name}} - {{item.price}}
+				    <button ng-click="item.orderCount = item.orderCount + 1" class="button button-positive">
+				      <i class="icon ion-ios-plus-outline"></i>
+				    </button>
+				    <button ng-click="item.orderCount = item.orderCount - 1" class="button button-positive">
+				      <i class="icon ion-ios-minus-outline"></i>
+				    </button>
+				    <button class="button button-calm">
+				      {{item.orderCount}}
+				    </button>
+				  </div>
+	    		</div>
+	    	</div>
+	    </div>
+	  </ion-slide>
+	</ion-slide-box>
+
+	<br/><br/>
+
+  </ion-content>
+</ion-view>

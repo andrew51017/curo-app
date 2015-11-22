@@ -12,7 +12,7 @@
 		</div>
 
         <a ng-repeat="restaurant in restaurants" 
-           href="#/{{restaurant.name}}"
+           ng-href="#/tab/restaurantinfo/{{restaurant.id}}"
            class="item item-thumbnail-left">
 
           <img ng-src="{{ restaurant.image }}">

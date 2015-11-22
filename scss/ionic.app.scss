@@ -63,3 +63,14 @@ ion-view
 	margin-top: 40px;
 }
 
+.item-multi-button-right > .button, .item-multi-button-right .item-content > .button, .item-multi-button-right > .buttons, .item-multi-button-right .item-content > .buttons
+{
+	position: inherit !important;
+	float: right;
+	border-radius: 0;
+}
+
+.item-multi-button-right, a.item.item-multi-button-right, button.item.item-multi-button-right
+{
+	padding-right: 10px !important;
+}

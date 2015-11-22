@@ -83,4 +83,66 @@ angular.module('curoapp.controllers', [])
   });
 
 
+})
+
+.controller('RestaurantInfoController', function($scope, $stateParams, Restaurant, Review, Menu) {
+
+  Array.prototype.groupBy = function(hash){
+    var _hash = hash ? hash : function(o){return o;};
+
+    var _map = {};
+    var put = function(map, key, value){
+      if (!map[_hash(key)]) {
+          map[_hash(key)] = {};
+          map[_hash(key)].group = [];
+          map[_hash(key)].key = key;
+
+      }
+      map[_hash(key)].group.push(value); 
+    }
+
+    this.map(function(obj){
+      put(_map, obj, obj);
+    });
+
+    return Object.keys(_map).map(function(key){
+      return {key: _map[key].key, group: _map[key].group};
+    });
+  }
+
+  $scope.getNumber = function(num) {
+      return new Array(num);   
+  }
+
+  $scope.restaurant = null;
+
+  var restaurantId = $stateParams.rid; 
+
+  //Get the restaurant. 
+
+  $scope.restaurant = Restaurant.findOne({
+    filter: { where: { id: restaurantId } }
+  });
+
+  //Get the reviews. 
+
+  $scope.reviews = Review.find({
+    filter: { where: { restaurant_id: restaurantId } }
+  });
+
+  //Get the menu 
+
+  Menu.find({
+    filter: { where: { restaurant_id: restaurantId } }
+  }).$promise.then(function(m) {
+
+      var groupedMenu = m.groupBy(function(mi) { return mi.type;});
+      $scope.menuItems = groupedMenu;
+
+  });
+
+
+
+
+
 }); 
