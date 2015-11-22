@@ -82,5 +82,27 @@ angular.module('curoapp.controllers', [])
     $scope.restaurants = r;
   });
 
+})
+
+.controller('BookingController', function($scope, $stateParams, Bookings, Restaurant) {
+
+  $scope.bookings = [];
+
+  var res = Bookings.find();
+
+  res.$promise.then(function(b) {
+    b.forEach(function(booking) {
+
+      var restaurant = Restaurant.findOne({
+        filter: { where : { id: booking.restaurant_id } }
+      }); 
+      restaurant.$promise.then(function(r) {
+          booking.name = r.name; 
+          $scope.bookings.push(booking);
+      }); 
+    }); 
+
+  });
+
 
 }); 
