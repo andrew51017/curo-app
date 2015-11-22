@@ -170,9 +170,21 @@ angular.module('curoapp.controllers', [])
 
   });
 
+  $scope.getTotalPrice = function(menuGroup)
+  {
+      var totalCost = 0; 
+      if (menuGroup != null)
+      {
+        menuGroup.forEach(function(group) {
+            group.group.forEach(function(groupItem) {
+              var price = Number(groupItem.price.substring(1,groupItem.price.length));
+              totalCost += groupItem.orderCount * price; 
+            }); 
+        }); 
+      }
 
-
-
+      return totalCost;
+  }; 
 
 }); 
 

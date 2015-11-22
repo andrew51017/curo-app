@@ -74,6 +74,20 @@
 				    </button>
 				  </div>
 	    		</div>
+				  <div class="item item-divider">
+				    Total price & Booking
+				  </div>
+			        <label class="item item-input">
+			          <span class="input-label">Total price</span>
+			          £{{getTotalPrice(menuItems);}}
+			        </label>
+			        <label class="item item-input">
+			          <span class="input-label">Party size</span>
+			          <input type="text" ng-model="partySize">
+			        </label>
+			        <label class="item">
+			          <button class="button button-block button-positive" type="button">Book now</button>
+			        </label>
 	    	</div>
 	    </div>
 	  </ion-slide>
