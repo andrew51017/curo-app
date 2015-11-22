@@ -44,10 +44,11 @@ angular.module('curoapp', ['ionic', 'curoapp.controllers', 'lbServices'])
     }
   })
   .state('tab.searchres', {
-    url: '/searchres',
+    url: '/searchres/:query',
     views: {
       'tab-dash': {
-        templateUrl: 'templates/tab-searchres.html',
+        controller: 'SearchController',
+        templateUrl: 'templates/tab-searchres.html'
       }
     }
   });

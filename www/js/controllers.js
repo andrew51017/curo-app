@@ -66,4 +66,14 @@ angular.module('curoapp.controllers', [])
      });
    };
 
-});
+})
+
+.controller('SearchController', function($scope, $stateParams, Restaurant) {
+
+  var searchQuery = $stateParams.query; 
+  $scope.restaurants = Restaurant.find({
+    filter: { where: { name: {like: '.*' + searchQuery + '.*'} } }
+  });
+
+
+}); 
